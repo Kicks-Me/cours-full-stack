@@ -1,8 +1,10 @@
 import express from 'express';
 import route from './route/index.route.js';
+import {cors} from './config/corsOptions.conf.js';
 
 const server = express();
 server.use(express.json());
+server.use(cors);
 
 const server_port = 3001;
 

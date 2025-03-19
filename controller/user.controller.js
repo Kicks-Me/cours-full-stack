@@ -53,36 +53,6 @@ export const getUser = async (req, res) => {
     }
 }
 
-
-///Arrow function
-export const createUser = async(rq, rs) => {
-    const { username, password, role } = rq.body;//const username = rq.body.username;
-
-    //// Validate data or validation data
-    if(!username || !password || !role){
-        return res.status(422).json({statusCode: 422, message: "Parameter empty!" });
-    }
-
-    try {
-
-        const sql = "INSERT INTO tbusers(username, password, role) VALUES(?,?,?)";
-        const params = [username, password, role];
-
-        const data = await dbExecute(sql, params);
-
-        //data = undefined | null | '' | 0 | empty | false
-
-        if(!data){
-            return rs.status(422).json({statusCode: 422, message: "Create user failed" });
-        }
-
-        return rs.status(201).json({statusCode: 201, message: "Create user success" });
-        
-    } catch (error) {
-        return rs.status(500).json({ message: "server error" });
-    }
-}
-
 export const deleteUser = async(request, response) => {
     const id = request.query?.id;
 
